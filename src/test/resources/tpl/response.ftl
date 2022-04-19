@@ -1,4 +1,3 @@
-
 <html>
 <#-- @ftlvariable name="data" type="io.qameta.allure.attachment.http.HttpResponseAttachment" -->
 <head>
