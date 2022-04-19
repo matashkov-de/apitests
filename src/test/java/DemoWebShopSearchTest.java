@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static listeners.CustomAllureListener.withCustomTemplates;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 public class DemoWebShopSearchTest {
@@ -30,6 +31,7 @@ public class DemoWebShopSearchTest {
         given()
                 .log().uri()
                 .log().body()
+                .filter(withCustomTemplates())
                 .body(credentials)
                 .contentType(JSON)
                 .when()
@@ -49,6 +51,7 @@ public class DemoWebShopSearchTest {
         given()
                 .log().uri()
                 .log().body()
+                .filter(withCustomTemplates())
                 .when()
                 .get("http://demowebshop.tricentis.com/catalog/searchtermautocomplete?term=TCP Instructor Led Training")
                 .then()
@@ -69,6 +72,7 @@ public class DemoWebShopSearchTest {
                 .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .log().uri()
                 .log().body()
+                .filter(withCustomTemplates())
                 .when()
                 .post("http://demowebshop.tricentis.com/addproducttocart/details/66/2")
                 .then()
