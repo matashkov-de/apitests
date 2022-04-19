@@ -63,6 +63,7 @@ public class DemoWebShopSearchTest {
     void addItemToWishList () {
         //Переходим к предмету и добавляем его в Wishlist
         //Проверяем, что предмет добавился в список Wishlist
+        //
 
         given()
                 .contentType("application/x-www-form-urlencoded; charset=UTF-8")
