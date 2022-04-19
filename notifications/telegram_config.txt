@@ -1,0 +1,18 @@
+BOT_TOKEN=5223071799:AAGUADnvxTsCajShtotUMSYkHftC1hESkrY
+CHAT_ID=975341929
+
+//jenkins send notifications code
+java \
+"-DprojectName=${PROJECT_NAME}" \
+"-Denv=${ENVIRONMENT}" \
+"-DreportLink=${BUILD_URL}" \
+"-Dcomm=Any comment here" \
+"-Dconfig.file=${PATH_TO_FILE}" \
+-jar allure-notifications-3.1.2.jar
+
+
+// bot command  in many lines (\ as separator)
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "975341929", "text": "This is a test from qa.guru"}' \
+     https://api.telegram.org/bot5223071799:AAGUADnvxTsCajShtotUMSYkHftC1hESkrY/sendMessage
