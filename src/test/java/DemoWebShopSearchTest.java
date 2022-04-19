@@ -14,7 +14,7 @@ public class DemoWebShopSearchTest {
 
     @BeforeAll
     static void beforeAll() {
-        RestAssured.filters(new AllureRestAssured());
+        RestAssured.filters(withCustomTemplates());
     }
 
     @Test
@@ -31,7 +31,6 @@ public class DemoWebShopSearchTest {
         given()
                 .log().uri()
                 .log().body()
-                .filter(withCustomTemplates())
                 .body(credentials)
                 .contentType(JSON)
                 .when()
@@ -51,7 +50,6 @@ public class DemoWebShopSearchTest {
         given()
                 .log().uri()
                 .log().body()
-                .filter(withCustomTemplates())
                 .when()
                 .get("http://demowebshop.tricentis.com/catalog/searchtermautocomplete?term=TCP Instructor Led Training")
                 .then()
@@ -69,16 +67,15 @@ public class DemoWebShopSearchTest {
         //
 
         given()
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .log().uri()
                 .log().body()
-                .filter(withCustomTemplates())
+                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
                 .when()
                 .post("http://demowebshop.tricentis.com/addproducttocart/details/66/2")
                 .then()
+                .statusCode(200)
                 .log().status()
                 .log().body()
-                .statusCode(200)
                 .body(matchesJsonSchemaInClasspath("schemes/Demowebshop_addToWishlist_Response.json"))
                 .body("success", is(true))
                 .body("message", is("The product has been added to your <a href=\"/wishlist\">wishlist</a>"))
